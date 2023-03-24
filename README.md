@@ -45,30 +45,58 @@ Our process involves:
 * "y" is our "loan_status" outcome (target) and "x" is our features  
 * For "loan_status", a value of 0 in the “loan_status” column means that the loan is healthy, and a value of 1 means that the loan has a high risk of defaulting 
 
-2) Creating a Logistic Regression model with the original data set
+2) Creating a Logistic Regression model with the original dataset
 * Our data set is comprised of 75036 records with a "loan_status" of "healthy, and 2500 records with a "loan_status" of "high-risk"
 * We will evaluate the model's perfomance by calculating the accuracy score of the model, generating a confusion matrix, and creating a classification report
 
-3) We will use the RandomOverSampler module from the imbalanced-learn library to resample the original data
-* Our resampled data set is comprised of 75036 equal records each of of "healthy and "high-risk" loans
-* We will evaluate the model's perfomance by calculating the accuracy score of the resampled model, generating a confusion matrix, and creating a classification report
+3) Using the RandomOverSampler module from the imbalanced-learn library, we will resample the original data and rerun Logistic Regression on the resampled dataset
+* Our resampled data set is comprised of two sets of 56277 equal records each of "healthy and "high-risk" loans
+* We will evaluate the revised model's perfomance by calculating the accuracy score of the resampled model, generating a confusion matrix, and creating a classification report
 
 ### Results
 
-Using bulleted lists, describe the balanced accuracy scores and the precision and recall scores of all machine learning models.
+**Machine Learning Model 1:**
+* Balanced accuracy is a metric that one can use when evaluating how good a binary classifier is. It is especially useful when the classes are imbalanced, i.e. one of the two classes appears a lot more often than the other. This happens often in many settings such as when we are trying to detect anomalies.  It is defined as the average of recall obtained on each class. Reviewing the score of the model and predictions seems to show a high degree of confidence in the model.  But this alone does not tell us the whole story.
+<img width="337" alt="Accuracy Score (Original Data)" src="https://user-images.githubusercontent.com/115101031/227609513-123a4c17-b24e-4c54-a327-a9c2270ca0b7.png">
 
-* Machine Learning Model 1:
-  * Description of Model 1 Accuracy, Precision, and Recall scores.
+* Reviewing the confusion matrix shows that 18678 loans were correctly predicted as "healthy" and 558 loans were correctly predicted as "high-risk".  When compared to the false positive and false negative, the model shows a pretty good degree of accuracy and precision.  Still, the false positives and false negatives could be better.
+<img width="567" alt="Confusion Matrix (Original Data)" src="https://user-images.githubusercontent.com/115101031/227602922-ef3a10fc-901d-46b6-9cc8-f61cda1543fe.png">
+
+* The classification report provides more clarity
+    * The precision and recall values are highly relevant because the cost of misclassification can be high. 
+    * A high precision score is important to minimize false positives, which can lead to a loss of potential customers.
+    * On the other hand, a high recall score is important to minimize false negatives, which can lead to significant financial losses.
+    * This logistic regression model has high accuracy (0.99). 
+    * When predicting healthy loans, RECALL shows the best overall predictive result, with both the highest true positives (healthy loans) and true negatives (high-risk loans).
+    * However, this results is also misleading bacause our dataset is imbalanced. Sampling our data to create a more balanced dataset may result in a higher degree of precision.
+<img width="430" alt="Classification Report (Original Data)" src="https://user-images.githubusercontent.com/115101031/227609729-6126aa02-47db-4f2a-8393-852ffa9c342a.png">
 
 
+**Machine Learning Model 2:**
+* Balanced accuracy: 
+  * Most machine learning algorithms work best when the number of samples in each class is about equal. However, if the dataset is imbalanced, the you may get high accuracy, but the results are misleading as they reflect mostly the majority class, but you fail to represent the minority class, which is most often the point of creating the model in the first place. For example, if the class distribution shows that 99% of the data has the majority class, then any basic classification model like the logistic regression will not be able to identify the minor class data points.
+  * We can hypothesize that in our analysis, high-risk loans are a minor class. In a dataset with highly unbalanced classes, the classifier will always “predict” the most common class and, as a result, will have a high accuracy rate.
+  * Resampling consists of removing samples from the majority class (under-sampling) and/or adding more examples from the minority class (over-sampling). In over-sampling, random records from the minority class are duplicated. RandomOverSampler generates new samples by random sampling with the replacement of the currently available samples.
+  * By resampling our data, the accuracy of our predictions approach 100%.
+<img width="338" alt="Accuracy Score (Resampled Data)" src="https://user-images.githubusercontent.com/115101031/227609576-1cf8bbba-4c75-492e-bb5f-8189eca67d24.png">
 
-* Machine Learning Model 2:
-  * Description of Model 2 Accuracy, Precision, and Recall scores.
+* he confusion matrix for our resampled dataset shows a small decrease in the predictability from our original dataset in our true positives (healthy loans = 18678) and increase in our true negatives (high-risk loans = 558).  Resampling our dataset has increased our ability to predict high risk loans, but also increases the number of healthy loans that are excluded and labeled as high-risk.  
+<img width="561" alt="Confusion Matrix (Resampled Data)" src="https://user-images.githubusercontent.com/115101031/227604332-19dff1b6-23c4-4bae-8231-01d958a33e5a.png">
+
+* The classification report provides more clarity
+    * This logistic regression model shows exceptional accuracy (1.00). 
+    * When predicting healthy loans, both PRECISION and RECALL shows a superior result (both in the proportion of actual and predicted positives was accurate, producing no falso positives or negatives), with both the highest true positives (healthy loans) and true negatives (high-risk loans).
+    * For "high-risk" loans, precision has not changed, meaning that the proportion of positive identifications did not improve with the resampled data.  This may indicate that training the model on fictitious data may be impacted when testing it against new test data.
+<img width="433" alt="Classification Report (Resampled Data)" src="https://user-images.githubusercontent.com/115101031/227607597-2b6a2777-e8e4-4261-921d-9fba183b296a.png">
 
 ### Summary
 
-Summarize the results of the machine learning models, and include a recommendation on the model to use, if any. For example:
-* Which one seems to perform best? How do you know it performs best?
-* Does performance depend on the problem we are trying to solve? (For example, is it more important to predict the `1`'s, or predict the `0`'s? )
+Looking at the two classification reports for the original dataset and resampled dataset, it looks as if model performance increased on the test data as a result of resampling the data. We get strong precision and perfect recall on the test dataset, which is a good indication about how well the model is likely to perform in real life.
 
-If you do not recommend any of the models, please justify your reasoning.
+The resampled data improves on the initial Logical Regression model. The balanced accuracy score increased from 0.942 to 0.995. It improves the predictability of true negatives meaning that it is more effective at distinguishing high-risk loans with high recall and accuracy.
+
+The resampled model generated an accuracy score of 100% which turned out to be higher than the model fitted with imbalanced data. The oversampled model performs better because it catches mistakes such as labeling high-risk loans as healthy loans.
+
+A lending company might favour a model that favours the ability to predict high-risk loans, thus minimizing potential financial losses for the company. The trade-off might be a higher number of healthy loans being tossed out as false negatives (predicted as risky, when they are healthy), but that would be an acceptable loss over predicting a high number of false positives (high-risk loans identified as healthy loans), which might be costly for a lending company when the customer defaults on their loans. Ultimately, increasing our precision for high-risk loans is the favourable choice.
+
+However, it is important to acknowledge that one potential difficulty with oversampling is that, given a real-world dataset, the synthesized samples may not truly belong to the minority class. As a result, training a classifier on these samples while pretending they represent minority may result in incorrect predictions when the model is used in the real world.  Perhaps one option to test, is rather than oversampling the minority class, we undersample the majority class, by artificially decreasing the number of observations that take on a particular value or range of values for that variable. We can evalluate what values are overrepresented in the dataset and decrease the number of observations that take on that value or range of values.
