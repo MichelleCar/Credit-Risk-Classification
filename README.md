@@ -1,4 +1,5 @@
-# Credit-Rsk-Classification
+# Using Supervised Machine Learning in the Analysis of Credit Risk in the Lending Industry
+![AlternativeLending_FINS_Funding](https://user-images.githubusercontent.com/115101031/227517220-bb8ce17f-930e-4ab7-b566-dbca2150f2f7.png)
 
 
 
