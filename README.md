@@ -47,11 +47,11 @@ Our process involves:
 
 2) Creating a Logistic Regression model with the original data set
 * Our data set is comprised of 75036 records with a "loan_status" of "healthy, and 2500 records with a "loan_status" of "high-risk"
+* We will evaluate the model's perfomance by calculating the accuracy score of the model, generating a confusion matrix, and creating a classification report
 
-The f
-* Provide basic information about the variables you were trying to predict (e.g., `value_counts`).
-* Describe the stages of the machine learning process you went through as part of this analysis.
-* Briefly touch on any methods you used (e.g., `LogisticRegression`, or any resampling method).
+3) We will use the RandomOverSampler module from the imbalanced-learn library to resample the original data
+* Our resampled data set is comprised of 75036 equal records each of of "healthy and "high-risk" loans
+* We will evaluate the model's perfomance by calculating the accuracy score of the resampled model, generating a confusion matrix, and creating a classification report
 
 ### Results
 
