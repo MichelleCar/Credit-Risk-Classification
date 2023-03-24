@@ -24,18 +24,18 @@ One of the challenges with binary events is the bias that may be created if our 
 Resampling strategies address class imbalance at the data level, by resampling the dataset to reduce the imbalance ratio.  The resampling of an imbalanced dataset occurs before the training of the prediction model and can be seen as a data preprocessing step. Numerous methods have been proposed for resampling imbalanced datasets, which can be categorized into three main strategies: oversampling, undersampling, and hybrid strategies.  In our analysis, we chose an oversampling stategy using RandomOverSampler from the imblearn (imbalanced-learn) library.  Oversampling consists in artificially increasing the proportion of samples from the minority class by randomly duplicating samples of the minority class.  In normalizing our data, both the accuracy, recall, and reliability of our predictions are expected to improve, ensuring that our outcomes are far more reflective of our data as a whole.
 
 Sources:
-https://www.datacamp.com/blog/supervised-machine-learning
-https://fraud-detection-handbook.github.io/fraud-detection-handbook/Chapter_6_ImbalancedLearning/Resampling.html
+* https://www.datacamp.com/blog/supervised-machine-learning
+* https://fraud-detection-handbook.github.io/fraud-detection-handbook/Chapter_6_ImbalancedLearning/Resampling.html
 
 
 ## Credit Risk Analysis Report
 
 ### Overview of the Analysis
 
-In this section, describe the analysis you completed for the machine learning models used in this Challenge. This might include:
+In this analysis, we use various techniques to train and evaluate a model based on loan risk. The dataset is comprised of historical lending activity from a peer-to-peer lending services company.  The goal is to build a model that can identify the creditworthiness of borrowers into two categories: 
+* Healthy Loans
+* High-risk Loans
 
-* Explain the purpose of the analysis.
-* Explain what financial information the data was on, and what you needed to predict.
 * Provide basic information about the variables you were trying to predict (e.g., `value_counts`).
 * Describe the stages of the machine learning process you went through as part of this analysis.
 * Briefly touch on any methods you used (e.g., `LogisticRegression`, or any resampling method).
