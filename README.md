@@ -36,6 +36,13 @@ In this analysis, we use various techniques to train and evaluate a model based 
 * Healthy Loans
 * High-risk Loans
 
+We will determine the best model by using Logistic Regression with:
+* Our original dataset, and 
+* A resampled dataset
+
+
+
+The f
 * Provide basic information about the variables you were trying to predict (e.g., `value_counts`).
 * Describe the stages of the machine learning process you went through as part of this analysis.
 * Briefly touch on any methods you used (e.g., `LogisticRegression`, or any resampling method).
