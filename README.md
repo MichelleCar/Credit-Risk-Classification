@@ -3,7 +3,7 @@
 ![AlternativeLending_FINS_Funding](https://user-images.githubusercontent.com/115101031/227517220-bb8ce17f-930e-4ab7-b566-dbca2150f2f7.png)
 
 
-## Overview
+## Big Picture (Methodology)
 
 The main difference between supervised and unsupervised machine learning is that supervised learning uses labeled data, which contains both Features (X variables) and a Target (y variable). 
 
@@ -19,12 +19,13 @@ The objective of supervised learning is to forecast results for new data based o
 
 Linear regression is one of the simplest machine learning algorithms available, it is used to learn to predict continuous value (dependent variable) based on the features (independent variable) in the training dataset. The value of the dependent variable which represents the effect, is influenced by changes in the value of the independent variable.  Logistic Regression is a special case of Linear Regression where target variable (y) is discrete / categorical such as 1 or 0, True or False, Yes or No, Default or No Default.  A log of the odds is used as the dependent variable. Using a logit function, logistic regression makes predictions about the probability that a binary event (like the one in this problem) will occur.
 
+One of the challenges with binary events is the bias that may be created if our dataset is imbalanced (ie. majority and minority classifiers).  This will skew the outcome in favour of the majority classifiers, and consequently give us a false reading of accuracy in our model.  In this case, the predictive accuracy of our model is not really based on our data/the features, but rather the majority cases in our data.  In such cases, scaling oour features to normalize the range of features in a dataset is highly beneficial. Real-world datasets often contain features that are varying in degrees of magnitude, range and units. Therefore, in order for machine learning models to interpret these features on the same scale, we need to perform feature scaling.
 
+Resampling strategies address class imbalance at the data level, by resampling the dataset to reduce the imbalance ratio.  The resampling of an imbalanced dataset occurs before the training of the prediction model and can be seen as a data preprocessing step. Numerous methods have been proposed for resampling imbalanced datasets, which can be categorized into three main strategies: oversampling, undersampling, and hybrid strategies.  In our analysis, we chose an oversampling stategy using RandomOverSampler from the imblearn (imbalanced-learn) library.  Oversampling consists in artificially increasing the proportion of samples from the minority class by randomly duplicating samples of the minority class.  In normalizing our data, both the accuracy, recall, and reliability of our predictions are expected to improve, ensuring that our outcomes are far more reflective of our data as a whole.
 
 Sources:
 https://www.datacamp.com/blog/supervised-machine-learning
-
-
+https://fraud-detection-handbook.github.io/fraud-detection-handbook/Chapter_6_ImbalancedLearning/Resampling.html
 
 
 ## Credit Risk Analysis Report
