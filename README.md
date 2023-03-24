@@ -40,7 +40,13 @@ We will determine the best model by using Logistic Regression with:
 * Our original dataset, and 
 * A resampled dataset
 
+Our process involves:
+1) Splitting the data into training and testing sets
+* "y" is our "loan_status" outcome (target) and "x" is our features  
+* For "loan_status", a value of 0 in the “loan_status” column means that the loan is healthy, and a value of 1 means that the loan has a high risk of defaulting 
 
+2) Creating a Logistic Regression model with the original data set
+* Our data set is comprised of 75036 records with a "loan_status" of "healthy, and 2500 records with a "loan_status" of "high-risk"
 
 The f
 * Provide basic information about the variables you were trying to predict (e.g., `value_counts`).
